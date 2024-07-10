@@ -161,5 +161,6 @@ cython_debug/
 langchain-docs/
 sm-docs/
 downloaded_pages/
+sm-faq/
 /.idea
 .idea/
