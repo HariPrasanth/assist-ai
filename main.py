@@ -55,8 +55,8 @@ if prompt:
 
 if st.session_state["chat_answers_history"]:
     for generated_response, user_query in zip(
-        st.session_state["chat_answers_history"],
-        st.session_state["user_prompt_history"],
+        reversed(st.session_state["chat_answers_history"]),
+        reversed(st.session_state["user_prompt_history"]),
     ):
         message(
             user_query,
