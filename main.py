@@ -53,7 +53,7 @@ def on_enter():
 
 
 # Text input with dynamic key and on_change callback
-st.text_input("Prompt", placeholder="Enter your message here...", key="input_text", on_change=on_enter)
+st.text_input("", placeholder="Ask me anything about Sri Mandir and their services...", key="input_text", on_change=on_enter)
 
 # Submit button
 if st.button("Submit"):
