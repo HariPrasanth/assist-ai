@@ -20,7 +20,7 @@ def create_sources_string(source_urls: Set[str]) -> str:
     return sources_string
 
 
-st.header("Puja Prajna")
+st.header("Ritwik - Your AI Assistant")
 if "chat_answers_history" not in st.session_state:
     st.session_state["chat_answers_history"] = []
 if "user_prompt_history" not in st.session_state:
