@@ -14,21 +14,6 @@ from langchain.schema import AgentAction, AgentFinish
 from langchain.tools import Tool
 from langchain.tools.render import render_text_description
 from backend.core import run_llm
-import spacy
-import subprocess
-import sys
-
-
-# Ensure spaCy model is downloaded
-def install_spacy_model(model_name: str):
-    subprocess.check_call([sys.executable, "-m", "spacy", "download", model_name])
-
-
-try:
-    nlp = spacy.load("en_core_web_sm")
-except OSError:
-    install_spacy_model("en_core_web_sm")
-    nlp = spacy.load("en_core_web_sm")
 
 load_dotenv()
 
@@ -85,26 +70,8 @@ def create_sources_string(source_urls: Set[str]) -> str:
     return sources_string
 
 
-def is_booking_related(query: str) -> bool:
-    # Use spaCy to determine if the query is booking related
-    doc = nlp(query.lower())
-    keywords = {"booking", "order", "prasad"}
-    for token in doc:
-        if token.text in keywords:
-            return True
-    return False
-
-
-def extract_booking_id(query: str) -> Union[str, None]:
-    # Use regex to extract potential booking ID from the query
-    match = re.search(r"\b\d{7}\b", query)
-    if match:
-        return match.group(0)
-    return None
-
-
 # Set up Streamlit
-st.header("HP - Your AI Assistant")
+st.header("Ritwik - Your AI Assistant")
 if "chat_answers_history" not in st.session_state:
     st.session_state["chat_answers_history"] = []
 if "user_prompt_history" not in st.session_state:
@@ -160,18 +127,17 @@ agent = (
 )
 
 
+def is_booking_related(query: str) -> bool:
+    # Define logic to determine if the query is related to booking
+    keywords = ["booking", "order", "puja", "prasad", "pooja"]
+    return any(keyword in query.lower() for keyword in keywords)
+
+
 def submit_message():
     with st.spinner("Generating response..."):
         input_text = st.session_state.input_text
-        final_answer = ""
 
         if is_booking_related(input_text):
-            booking_id = extract_booking_id(input_text)
-            if not booking_id:
-                st.warning("Please provide your booking ID to proceed.")
-                return
-
-            input_text += f" Booking ID: {booking_id}"
             agent_step = ""
             while not isinstance(agent_step, AgentFinish):
                 agent_step: Union[AgentAction, AgentFinish] = agent.invoke(
