@@ -21,7 +21,6 @@ load_dotenv()
 @tool
 def get_order_details(order_id: str) -> str:
     """Returns the order details by making an API call"""
-    print(f"Making API Call for Order ID: {order_id}")
 
     order_id = order_id.strip()
     if len(order_id) != 7:
@@ -30,7 +29,6 @@ def get_order_details(order_id: str) -> str:
             order_id = ids[1].strip()
             order_id = remove_special_chars(order_id)
     url = "https://api.a4b.io/gw1/puja/external/v1/bookings/" + order_id
-    print(url)
 
     try:
         # Send a GET request to the constructed URL
