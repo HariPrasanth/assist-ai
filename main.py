@@ -129,7 +129,7 @@ agent = (
 
 def is_booking_related(query: str) -> bool:
     # Define logic to determine if the query is related to booking
-    keywords = ["booking", "order", "puja", "prasad", "pooja"]
+    keywords = ["booking", "order"]
     return any(keyword in query.lower() for keyword in keywords)
 
 
