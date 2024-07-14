@@ -16,7 +16,7 @@ embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
 
 
 def ingest_docs():
-    directory = 'sm-temple-docs'  # Specify your directory path here
+    directory = 'sm-puja-docs'  # Specify your directory path here
     html_contents = read_html_files(directory)
     print(f"loaded {len(html_contents)} documents")
 
@@ -30,7 +30,7 @@ def ingest_docs():
 
         count += 1
         print(f"Going to add {len(split_texts)} to Pinecone : {count} {split_texts}")
-        # PineconeVectorStore.from_texts(split_texts, embeddings, index_name=INDEX_NAME)
+        PineconeVectorStore.from_texts(split_texts, embeddings, index_name=INDEX_NAME)
         print("****Loading to vectorstore done ***")
 
 
