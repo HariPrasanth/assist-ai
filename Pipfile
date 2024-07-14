@@ -23,7 +23,6 @@ langchain-openai = "*"
 langchain-community = "*"
 isort = "*"
 langchainhub = "*"
-spacy = "*"
 
 [dev-packages]
 
