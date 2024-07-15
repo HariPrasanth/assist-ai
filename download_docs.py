@@ -57,42 +57,38 @@ def convert_html_to_document(file_path):
 # URL of the website to download
 def generate_link():
     dates = [
-        "shanivar-13th-july-24",
-        "purnima-21st-1-2024",
-        "savan-22nd-july-2024",
-        "shaktipeeth-13th-july-24",
-        "omkareshwar-15th-july-24",
-        "satyanarayan-katha-21july",
-        "gupta-navratri-ashtami-13th-july-2024",
-        "savan-2nd-22nd-july-2024",
-        "kashi-vishesh-21th-july-24",
-        "double-jyotirling-22nd-july-2024",
-        "shanivar-vishesh-13th-july-2024",
-        "gupt-navratri-14th-july-2024",
-        "dev-ekadashi-4-17th-july-2024",
-        "tryambhakeshwar-22nd-j-2024",
-        "dev-ekadashi-2-17th-july-24",
-        "bagalamukhi-13th-july-24",
-        "narayan-bali-14th-july-2024",
-        "dev-ekadashi-3-17th-july-2024",
-        "ravivar-mahakal-14th-july-2024",
-        "omkareshwar-jyotirlinga-15th-july-2024",
-        "mahagauri-13th-july-2024",
-        "kashi-vishesh-14th-july-24",
-        "gupta-navratri-13th-july-2024",
-        "omkareshwar-15th-july-024",
         "rahu-nakshtra-15th-july-24",
         "kashi-somwar-15th-july-2024",
-        "jyotirlinga-vishesh-22nd-july-2024",
-        "narayan-bali-17th-july-2024",
+        "omkareshwar-15th-july-24",
+        "omkareshwar-jyotirlinga--15th-july-2024",
+        "mangalwar-ram-vishesh-21st-july-2024",
+        "mangalik-dosh-16th-july-2024",
         "dev-ekadashi-1-17th-july-24",
+        "dev-ekadashi-2-17th-july-24",
+        "dev-ekadashi-3-17th-july-2024",
+        "narayan-bali-17th-july-2024",
         "19,000-mool-mantra-jaap-17th-july-2024",
-        "rahu-guru-21july"
+        "dev-ekadashi-4-17th-july-2024",
+        "pradosh-18july",
+        "batuk-bhairav-18july",
+        "tantrapeeth-19th-july-2024",
+        "shani-puja-20th-july-2024",
+        "baglamukhi-tantra-20july",
+        "divya-maahakali-20th-july-24",
+        "purnima-21st-1-2024",
+        "rahu-guru-21july",
+        "satyanarayan-katha-21july",
+        "kashi-vishesh-21th-july-24",
+        "guru-purnima-21st-july-2024",
+        "jyotirlinga-vishesh-22nd-july-2024",
+        "savan-22nd-july-2024",
+        "savan-2nd-22nd-july-2024",
+        "savan-somwar-22nd-july-2024"
     ]
     base_url = "https://srimandir.com/epuja/"
-    download_folder = 'sm-puja-docs'
+    download_folder = 'sm-puja-docs-latest'
     create_folder(download_folder)
-    lang = ["hi", "en"]
+    lang = ["en"]
     result = []
     for date in dates:
         for lan in lang:
@@ -389,7 +385,7 @@ def generate_link_temples():
 
 
 if __name__ == "__main__":
-    # generate_link()
+    generate_link()
     # generate_link_panchang()
     # generate_link_home()
-    generate_link_temples()
+    # generate_link_temples()
