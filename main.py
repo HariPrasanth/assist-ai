@@ -17,12 +17,10 @@ from backend.core import run_llm
 
 load_dotenv()
 
-
 @tool
 def get_order_details(order_id: str) -> str:
     """Returns the order details by making an API call"""
     print(f"Making API Call for Order ID: {order_id}")
-
     order_id = order_id.strip()
     if len(order_id) != 7:
         ids = order_id.split("=")
@@ -33,11 +31,8 @@ def get_order_details(order_id: str) -> str:
     print(url)
 
     try:
-        # Send a GET request to the constructed URL
         response = requests.get(url)
-        response.raise_for_status()  # Raise an HTTPError for bad responses
-
-        # Parse the response JSON
+        response.raise_for_status()
         data = response.json()
         return data
     except requests.exceptions.HTTPError as http_err:
@@ -45,19 +40,15 @@ def get_order_details(order_id: str) -> str:
     except Exception as err:
         return f"Other error occurred: {err}"
 
-
 def remove_special_chars(s: str) -> str:
     """Removes trailing special characters from a string."""
-    special_chars = string.punctuation  # This includes all punctuation characters
-    return s.lstrip(special_chars).rstrip(special_chars)
-
+    return s.strip(string.punctuation)
 
 def find_tool_by_name(tools: List[Tool], tool_name: str) -> Tool:
     for tool in tools:
         if tool.name == tool_name:
             return tool
     raise ValueError(f"Tool with name {tool_name} not found")
-
 
 def create_sources_string(source_urls: Set[str]) -> str:
     if not source_urls:
@@ -68,7 +59,6 @@ def create_sources_string(source_urls: Set[str]) -> str:
     for i, source in enumerate(sources_list):
         sources_string += f"{i + 1}. {source}\n"
     return sources_string
-
 
 # Set up Streamlit
 st.header("Ritwik - Your AI Assistant")
@@ -126,12 +116,9 @@ agent = (
         | ReActSingleInputOutputParser()
 )
 
-
 def is_booking_related(query: str) -> bool:
-    # Define logic to determine if the query is related to booking
     keywords = ["booking", "order"]
     return any(keyword in query.lower() for keyword in keywords)
-
 
 def submit_message():
     with st.spinner("Generating response..."):
@@ -166,12 +153,10 @@ def submit_message():
         st.session_state["chat_history"].append(("ai", final_answer))
         st.session_state.input_text = ""  # Clear the input text
 
-
 # Callback function to handle Enter key press
 def on_enter():
     if st.session_state.input_text.strip():
         submit_message()
-
 
 # Text input with dynamic key and on_change callback
 st.text_input("Question", placeholder="Ask me anything about Sri Mandir and their services ...", key="input_text",
