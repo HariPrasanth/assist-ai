@@ -6,3 +6,5 @@ requests~=2.32.3
 streamlit~=1.36.0
 langchain-community~=0.2.7
 beautifulsoup4~=4.12.3
+fastapi
+uvicorn
